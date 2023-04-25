@@ -165,7 +165,7 @@
 >
 	<h1 class="text-current tracking-tighter font-bold">
 		<button
-			on:change={() => (turboMode = !turboMode)}
+			on:click={() => (turboMode = !turboMode)}
 			class={turboMode ? 'text-rose-500' : 'text-black'}
 		>
 			RadioHand
