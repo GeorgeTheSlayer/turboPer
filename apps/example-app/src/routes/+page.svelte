@@ -23,6 +23,7 @@
 	let sampleBuff = [];
 	let currentGesture = 4;
 	let isStarted = false;
+	let turboMode = false;
 
 	const handWaving = new HandWaving(windowSize, windowSize / 2, true, gestures.length);
 	const sounds = [
@@ -37,7 +38,12 @@
 
 	$: {
 		console.log(currentGesture);
-		sounds[currentGesture].play();
+		let newGest = currentGesture;
+		if (turboMode && currentGesture === 3) {
+			newGest = Math.floor(Math.random() * 7);
+		}
+
+		sounds[newGest].play();
 	}
 
 	function loadNN() {
@@ -156,7 +162,14 @@
 <body
 	class="grid grid-col-1 justify-center align-middle items-center mt-20 mx-auto h-full font-sans text-7xl"
 >
-	<h1 class="text-current tracking-tighter font-bold">RadioHand</h1>
+	<h1 class="text-current tracking-tighter font-bold">
+		<button
+			on:click={() => (turboMode = !turboMode)}
+			class={turboMode ? 'text-rose-500' : 'text-black'}
+		>
+			RadioHand
+		</button>
+	</h1>
 	<!-- <h2>{text}</h2>  -->
 	<!--	<div style="display: flex; white-space: nowrap; overflow: hidden;">-->
 	<!--		<div>-->
