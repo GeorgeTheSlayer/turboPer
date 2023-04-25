@@ -38,12 +38,13 @@
 
 	$: {
 		console.log(currentGesture);
-		let newGest = currentGesture;
-		if (turboMode && currentGesture === 3) {
-			newGest = Math.floor(Math.random() * 7);
-		}
+		sounds[currentGesture].play();
+	}
 
-		sounds[newGest].play();
+	$: {
+		console.log(turboMode);
+		sounds[currentGesture].loop(turboMode);
+		sounds[currentGesture].play();
 	}
 
 	function loadNN() {
@@ -164,7 +165,7 @@
 >
 	<h1 class="text-current tracking-tighter font-bold">
 		<button
-			on:click={() => (turboMode = !turboMode)}
+			on:change={() => (turboMode = !turboMode)}
 			class={turboMode ? 'text-rose-500' : 'text-black'}
 		>
 			RadioHand
