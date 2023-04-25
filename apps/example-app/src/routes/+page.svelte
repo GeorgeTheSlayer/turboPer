@@ -22,18 +22,22 @@
 	const sampleRate = 60;
 	let sampleBuff = [];
 	let currentGesture = 4;
-	let isStarted = true;
+	let isStarted = false;
 
 	const handWaving = new HandWaving(windowSize, windowSize / 2, true, gestures.length);
-	const clap = new Howl({ src: ['/clap.wav'] });
+	const sounds = [
+		new Howl({ src: ['/clap.mp3'] }),
+		new Howl({ src: ['/cow.mp3'] }),
+		new Howl({ src: ['/rim.mp3'] }),
+		new Howl({ src: ['/bongo.mp3'] }),
+		new Howl({ src: ['/crash.mp3'] }),
+		new Howl({ src: ['/shaker.mp3'] }),
+		new Howl({ src: ['/yeah.mp3'] })
+	];
+
 	$: {
 		console.log(currentGesture);
-		switch (currentGesture) {
-			default: {
-				clap.play();
-				break;
-			}
-		}
+		sounds[currentGesture].play();
 	}
 
 	function loadNN() {
@@ -133,14 +137,18 @@
 	//TODO: Test on Android
 	function onClick() {
 		loadNN();
-		DeviceOrientationEvent.requestPermission()
-			.then((response) => {
-				if (response == 'granted') {
-					window.addEventListener('devicemotion', handleMotionEvent, true);
-					text = 'Started';
-				}
-			})
-			.catch(console.error);
+		if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+			DeviceOrientationEvent.requestPermission()
+				.then((response) => {
+					if (response == 'granted') {
+						window.addEventListener('devicemotion', handleMotionEvent, true);
+						text = 'Started';
+					}
+				})
+				.catch(console.error);
+		} else {
+			window.addEventListener('devicemotion', handleMotionEvent, true);
+		}
 		isStarted = true;
 	}
 </script>
