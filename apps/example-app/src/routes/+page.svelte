@@ -47,6 +47,10 @@
 		sounds[currentGesture].play();
 	}
 
+	const resetSound = () => {
+		sounds.forEach((s) => s.loop(false));
+	};
+
 	function loadNN() {
 		handWaving.loadNet(layers);
 	}
@@ -193,7 +197,7 @@
 	<!--		</div>-->
 	<!--	</div>-->
 	<div class="border-2 border-black mt-4">
-		<div class="w-full h-full">
+		<button class="w-full h-full" on:click={resetSound}>
 			{#if isStarted}
 				{#if currentGesture === 0}
 					<svg
@@ -331,7 +335,7 @@
 			{:else}
 				<button on:click={onClick} class="w-full h-full">Click</button>
 			{/if}
-		</div>
+		</button>
 	</div>
 	<h1 class="text-7xl text-current text-center mt-4 tracking-wider text-gray-500 font-light">
 		{textGestures[currentGesture]}
