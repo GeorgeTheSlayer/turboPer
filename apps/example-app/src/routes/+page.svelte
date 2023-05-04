@@ -175,27 +175,6 @@
 			RadioHand
 		</button>
 	</h1>
-	<!-- <h2>{text}</h2>  -->
-	<!--	<div style="display: flex; white-space: nowrap; overflow: hidden;">-->
-	<!--		<div>-->
-	<!--			<h1>With Gravity</h1>-->
-	<!--			<p>X: {withoutGrav.x}</p>-->
-	<!--			<p>Highest: {withoutGrav.lastX}</p>-->
-	<!--			<p>Y: {withoutGrav.y}</p>-->
-	<!--			<p>Highest: {withoutGrav.lastY}</p>-->
-	<!--			<p>Z: {withoutGrav.z}</p>-->
-	<!--			<p>Highest: {withoutGrav.lastZ}</p>-->
-	<!--		</div>-->
-	<!--		<div>-->
-	<!--			<h1>Without Gravity</h1>-->
-	<!--			<p>X: {withGrav.x}</p>-->
-	<!--			<p>Highest: {withGrav.lastX}</p>-->
-	<!--			<p>Y: {withGrav.y}</p>-->
-	<!--			<p>Highest: {withGrav.lastY}</p>-->
-	<!--			<p>Z: {withGrav.z}</p>-->
-	<!--			<p>Highest: {withGrav.lastZ}</p>-->
-	<!--		</div>-->
-	<!--	</div>-->
 	<div class="border-2 border-black mt-4">
 		<button class="w-full h-full" on:click={resetSound}>
 			{#if isStarted}
